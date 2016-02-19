@@ -16,3 +16,5 @@ Android中的序列化有两种方式，分别是实现Serializable接口和Parc
 
 Facebook开源的图片处理库
 
+###6、接口数据调试插件 - [JsonOnlineViewer](https://plugins.jetbrains.com/plugin/7838?pr=)
+可实现直接在android studio中调试接口数据，可以选择请求类型，自定义请求头及请求体，json数据格式化后展示
