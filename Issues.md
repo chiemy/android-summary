@@ -66,3 +66,18 @@ What if the fragment has not been recreated, but needs to be updated anyway? Upd
 
 
 One last thing - just because FragmentPagerAdapter doesn't destroy a fragment doesn't mean that getItemPosition is completely useless in a FragmentPagerAdapter. You can still use this callback to reorder your fragments in the ViewPager. It will never remove them completely from the FragmentManager, though.
+
+##ViewPager不设置id报错
+动态创建ViewPager时，如果不设置id时，会报错，原因不明
+	
+	android.content.res.Resources$NotFoundException: Unable to find resource ID #0xffffffff
+                                                       at android.content.res.Resources.getResourceName(Resources.java:2235)
+                                                       at android.support.v4.app.FragmentManagerImpl.moveToState(FragmentManager.java:1059)
+                                                       at android.support.v4.app.FragmentManagerImpl.moveToState(FragmentManager.java:1248)
+                                                       at android.support.v4.app.BackStackRecord.run(BackStackRecord.java:738)
+                                                       at android.support.v4.app.FragmentManagerImpl.execPendingActions(FragmentManager.java:1613)
+                                                       at android.support.v4.app.FragmentManagerImpl.executePendingTransactions(FragmentManager.java:570)
+                                                       at android.support.v4.app.FragmentPagerAdapter.finishUpdate(FragmentPagerAdapter.java:141)
+                                                       at android.support.v4.view.ViewPager.populate(ViewPager.java:1106)
+                                                       at android.support.v4.view.ViewPager.populate(ViewPager.java:952)
+                                                       at android.support.v4.view.ViewPager.setAdapter(ViewPager.java:447)
