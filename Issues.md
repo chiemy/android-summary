@@ -81,3 +81,24 @@ One last thing - just because FragmentPagerAdapter doesn't destroy a fragment do
                                                        at android.support.v4.view.ViewPager.populate(ViewPager.java:1106)
                                                        at android.support.v4.view.ViewPager.populate(ViewPager.java:952)
                                                        at android.support.v4.view.ViewPager.setAdapter(ViewPager.java:447)
+                                                       
+                                                      
+##ListView调用removeFooterView(footerView)方法报错
+在Android 4.4之前，会出现如下错误：
+
+	ExampleAdapter cannot be cast to android.widget.HeaderViewListAdapter
+	
+原因是`addFooterView()`方法需要在`setAdapter`方法之前调用
+
+`addFooterView()` API level 15:
+
+	/*
+    * NOTE: Call this before calling setAdapter. This is so ListView can wrap
+    * the supplied cursor with one that will also account for header and footer
+    * views.
+    
+所以在4.4之前调用的顺序应该如下：
+
+- 1.addFooterView(footer);
+- setAdapter(adapter);
+- removeFooterView(footer);
