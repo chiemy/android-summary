@@ -18,3 +18,16 @@ If you do, you should set the thread priority to "background" priority by callin
 	startActivity(intent);  
 
 	finish();//关掉自己 
+	
+##Android Studio查看调试程序的SH1与MD5
+Android Studio没有像Eclipse一样查看调试程序SH1与MD5的可视界面，需要在Android Studio中使用命令。
+
+在我们进行调试时，Android Studio使用的是其默认的签名文件，在Mac上保存到如下路径：
+
+	 你的当前用户\.android\debug.keystore
+
+首先，进入该路径，然后运行如下命令
+
+
+	keytool -v -list -keystore debug.keystore
+	
