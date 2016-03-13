@@ -102,3 +102,34 @@ One last thing - just because FragmentPagerAdapter doesn't destroy a fragment do
 - 1.addFooterView(footer);
 - setAdapter(adapter);
 - removeFooterView(footer);
+
+##ScrollView嵌套GridView自动滑动到底部
+ScrollView嵌套GridView，在GridView加载数据时，ScrollView会自动滚动到GridView的底部，解决办法：在设置数据时
+
+	gridView.setFocusable(false);
+	
+##WebView引起的内存泄露
+
+[StackOverFlow](http://stackoverflow.com/questions/3130654/memory-leak-in-webview)
+
+**解决方式一：**
+
+当在XML文件中定义`WebView`时，Activity会作为context传递给WebView，当Activity结束时，WebView还会保持对activity的引用，造成内存泄露，我们可以选择动态创建WebView:
+
+	webView = new WebView(getApplicationContext());
+	
+但要注意，如果只是简单的展示一个网页，这种方式没有问题，但如果网页能够跳转超链接，或弹出对话框，这种方式是有问题的。
+
+**解决方式二：**
+
+在xml中给WebView再包裹一层，如`FrameLayout`或`RelativeLayout`，在`onDestroy()`中：
+
+	@Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mWebContainer.removeAllViews();
+        mWebView.destroy();
+    }
+    
+> 注：以上方法并未实际测试过
+
