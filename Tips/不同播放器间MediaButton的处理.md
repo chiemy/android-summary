@@ -8,7 +8,7 @@ If your media playback application creates a media playback service, just like M
 
 In this article, we’ll see how to handle this properly in Android 2.2. We’ll first see how to set up intents to receive “MEDIA_BUTTON” intents. We’ll then describe how your application can appropriately become the preferred media button responder in Android 2.2. Since this feature relies on a new API, we’ll revisit the use of reflection to prepare your app to take advantage of Android 2.2, without restricting it to API level 8 (Android 2.2).
 
-An example of the handling of media button intents
+###An example of the handling of media button intents
 In our AndroidManifest.xml for this package we declare the class RemoteControlReceiver to receive MEDIA_BUTTON intents:
 
 ```
@@ -37,7 +37,7 @@ In a media playback application, this is used to react to headset button presses
 
 However, this is problematic in the scenario we mentioned earlier. When the user presses “play”, what application should start playing? The Music application? The user’s preferred podcast application?
 
-Becoming the “preferred” media button responder
+###Becoming the “preferred” media button responder
 In Android 2.2, we are introducing two new methods in android.media.AudioManager to declare your intention to become the “preferred” component to receive media button events: registerMediaButtonEventReceiver() and its counterpart, unregisterMediaButtonEventReceiver(). Once the registration call is placed, the designated component will exclusively receive the ACTION_MEDIA_BUTTON intent just as in the example above.
 
 In the activity below were are creating an instance of AudioManager with which we will register our component. We therefore create a ComponentName instance that references our intended media button event responder.
@@ -87,7 +87,7 @@ Additionally, it may make sense for your registered component not to be called w
     
 After “unregistering”, the previous component that requested to receive the media button intents will once again receive them.
 
-Preparing your code for Android 2.2 without restricting it to Android 2.2
+###Preparing your code for Android 2.2 without restricting it to Android 2.2
 While you may appreciate the benefit this new API offers to the users, you might not want to restrict your application to devices that support this feature. Andy McFadden shows us how to use reflection to take advantage of features that are not available on all devices. Let’s use what we learned then to enable your application to use the new media button mechanism when it runs on devices that support this feature.
 
 First we declare in our Activity the two new methods we have used previously for the registration mechanism:
