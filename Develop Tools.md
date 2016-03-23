@@ -18,3 +18,12 @@ Facebook开源的图片处理库
 
 ###6、接口数据调试插件 - [JsonOnlineViewer](https://plugins.jetbrains.com/plugin/7838?pr=)
 可实现直接在android studio中调试接口数据，可以选择请求类型，自定义请求头及请求体，json数据格式化后展示
+
+###7、单元测试--Roboletric
+
+[Roboletric探索之路，从抗拒到依赖](http://iceanson.github.io/Robolectric-%E6%8E%A2%E7%B4%A2%E4%B9%8B%E8%B7%AF)
+
+现在是个讲究效率的时代，我们希望能够快速高效的验证我们的代码逻辑是否有问题，我们不希望验证一个简单的逻辑或者一个方法是否有效，是通过run一次模拟器或者整个工程实现的，这样花费的时间太长了，降低了开发效率。
+
+Roboletric不需要Run你的模拟器，直接在jvm上运行你的测试代码，能在几秒钟之内快速验证，通过体验之后，它确实非常高效，编写测试代码反而加速了开发效率。 
+
