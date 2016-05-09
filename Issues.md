@@ -133,3 +133,4 @@ ScrollView嵌套GridView，在GridView加载数据时，ScrollView会自动滚�
     
 > 注：以上方法并未实际测试过
 
+##VideoView设置为不可见是，onPrepared方法不回调
