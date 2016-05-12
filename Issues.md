@@ -134,3 +134,25 @@ ScrollView嵌套GridView，在GridView加载数据时，ScrollView会自动滚�
 > 注：以上方法并未实际测试过
 
 ##VideoView设置为不可见是，onPrepared方法不回调
+
+##<scale/>标签在xml中使用无效
+
+用xml对一张图片进行缩放，例如：名为`scale_image`
+
+	<scale xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/logo"
+    android:scaleGravity="center_vertical|center_horizontal"
+    android:scaleHeight="80%"
+    android:scaleWidth="80%" />
+    
+在xml中直接使用，图片并不显示
+
+	<ImageView
+                android:id="@+id/iv_prev_action_large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/scale_image"
+                />
+                
+ Stackoverflow上的有人提示说，关于`ScaleDrawable`官方文档有这么一句话：`A Drawable that changes the size of another Drawable based on its current level value. `
