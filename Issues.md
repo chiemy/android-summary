@@ -156,3 +156,26 @@ ScrollView嵌套GridView，在GridView加载数据时，ScrollView会自动滚�
                 />
                 
  Stackoverflow上的有人提示说，关于`ScaleDrawable`官方文档有这么一句话：`A Drawable that changes the size of another Drawable based on its current level value. `
+
+## 获取屏幕尺寸
+之前用了那么久的获取屏幕尺寸的方法竟然是有问题的，现在才发现，在 API 17 以上，以下方法可能有问题：
+
+```
+DisplayMetrics metrics = new DisplayMetrics();
+this.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+```
+正确方法
+```
+if (Build.VERSION.SDK_INT >= 17) {
+	Point size = new Point();
+	try {
+		this.getWindowManager().getDefaultDisplay().getRealSize(size);
+	} catch (NoSuchMethodError e) {
+		Log.i("error", "it can't work");
+	}
+
+} else {
+	DisplayMetrics metrics = new DisplayMetrics();
+	this.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+}
+```
