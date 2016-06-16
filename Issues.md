@@ -163,6 +163,8 @@ ScrollView嵌套GridView，在GridView加载数据时，ScrollView会自动滚�
 ```
 DisplayMetrics metrics = new DisplayMetrics();
 this.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+int height = metrics.heightPixels;
+int width = metrics.widthPixels;
 ```
 正确方法
 ```
@@ -179,5 +181,7 @@ if (Build.VERSION.SDK_INT >= 17) {
 } else {
 	DisplayMetrics metrics = new DisplayMetrics();
 	this.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+	int height = metrics.heightPixels;
+	int width = metrics.widthPixels;
 }
 ```
