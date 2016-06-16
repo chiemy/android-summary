@@ -170,6 +170,8 @@ if (Build.VERSION.SDK_INT >= 17) {
 	Point size = new Point();
 	try {
 		this.getWindowManager().getDefaultDisplay().getRealSize(size);
+		int height = size.y;
+		int width = size.x;
 	} catch (NoSuchMethodError e) {
 		Log.i("error", "it can't work");
 	}
