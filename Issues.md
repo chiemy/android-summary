@@ -185,3 +185,18 @@ if (Build.VERSION.SDK_INT >= 17) {
 	int width = metrics.widthPixels;
 }
 ```
+
+## SurfaceView 闪现黑屏的问题
+某些手机上Fragment中的SurfaceView，或通过addView的方式添加的SurfaceView，会闪现黑屏的问题
+
+StackOverflow 上的回答[SurfaceView flashes black on load](http://stackoverflow.com/questions/8772862/surfaceview-flashes-black-on-load)
+
+```
+I think I found the reason for the black flash. In my case I'm using a SurfaceView inside a Fragment and dynamically adding this fragment to the activity after some action. The moment when I add the fragment to the activity, the screen flashes black. I checked out grepcode for the SurfaceView source and here's what I found: when the surface view appears in the window the very fist time, it requests the window's parameters changing by calling a private IWindowSession.relayout(..) method. This method "gives" you a new frame, window, and window surface. I think the screen blinks right at that moment.
+
+The solution is pretty simple: if your window already has appropriate parameters it will not refresh all the window's stuff and the screen will not blink. The simplest solution is to add a 0px height plain SurfaceView to the first layout of your activity. This will recreate the window before the activity is shown on the screen, and when you set your second layout it will just continue using the window with the current parameters. I hope this helps.
+```
+
+通过上文的描述，解决办法是，在Activity的布局中添加一个宽高为0的SurfaceView即可解决。（未验证)
+
+还有一种方法，就是在Activity的`setContentView`方法之前调用`getWindow().setFormat(PixelFormat.TRANSLUCENT)`即可，亲测可行。
