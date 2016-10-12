@@ -200,3 +200,8 @@ The solution is pretty simple: if your window already has appropriate parameters
 通过上文的描述，解决办法是，在Activity的布局中添加一个宽高为0的SurfaceView即可解决。（未验证)
 
 还有一种方法，就是在Activity的`setContentView`方法之前调用`getWindow().setFormat(PixelFormat.TRANSLUCENT)`即可，亲测可行。
+
+
+## 同时实现Serializable和Parcelable接口的类
+
+同时实现Serializable和Parcelable接口的类，通过putSerializable方法在Activity间传递，通过getSerializable获取后，只保留了Parcelable写入的属性值，其他都变成null了，可能是底层做的优化处理
